@@ -6,7 +6,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
-    path('register/', views.registerPage, name='register'),
 
     path('class_details/<str:pk>', views.classDetails, name='class_details'),
     path('update_student/<str:pk>', views.updateStudent, name='update_student'),
@@ -21,8 +20,6 @@ urlpatterns = [
     path('student/', views.studentPage, name='student-page'),
     path('student_profile/<str:pk>', views.studentProfile, name='student-profile'),
     path('contact_form/', views.contactForm, name='contact-form'),
-    path('student_update/<str:pk>', views.updateStudentForStudent, name='student-update'),
-
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name='accounts/password_reset.html'), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_sent.html'), name='password_reset_done'),

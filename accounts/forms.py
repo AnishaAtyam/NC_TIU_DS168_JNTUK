@@ -25,12 +25,3 @@ class ClassForm(ModelForm):
         model = Class
         fields = '__all__'
 
-
-class StudentFormForStudent(ModelForm):
-    class Meta:
-        model = Student
-        fields = ['stuclass', 'name', 'fathersname', 'mothersname', 'dob', 'dateofadmission', 'course', 'subject', 'roll', 'phone']
-        widgets = {
-            'dob': DateInput(attrs={'type': 'date'}),
-            'dateofadmission': DateInput(attrs={'type': 'date'})
-        }

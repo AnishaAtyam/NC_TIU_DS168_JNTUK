@@ -165,11 +165,6 @@
                 <input type="password" name="password" placeholder="Password">
             </div>
 
-            <div class="checkbox-container">
-                <label>New User?</label>
-                <a href="{% url 'register' %}">Sign Up</a>
-            </div>
-
             <button class="btn">Log In</button>
             {% for message in messages %}
                 <p id="messages">{{ message }}</p>

@@ -8,7 +8,7 @@ from django.urls import reverse
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import StudentForm, ClassForm, CreateUserForm, StudentFormForStudent
+from .forms import StudentForm, ClassForm, CreateUserForm
 from .filters import StudentFilter
 from .decorators import admin_only
 from django.contrib.auth.decorators import login_required
@@ -62,22 +62,6 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 
-def registerPage(request):
-    form = CreateUserForm()
-    if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            group = Group.objects.get(name='student')
-            student = Student.objects.create(user=user)
-            user.groups.add(group)
-            student.stuclass = None
-            return redirect('/')
-    context = {'form': form}
-    return render(request, 'accounts/register.html', context)
-
-
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -121,19 +105,6 @@ def updateStudent(request, pk):
             return redirect('/')
         else:
             form = StudentForm(instance=student)
-    context = {'form': form}
-    return render(request, 'accounts/details_update.html', context)
-
-
-@login_required(login_url='login')
-def updateStudentForStudent(request, pk):
-    student = Student.objects.get(id=pk)
-    form = StudentFormForStudent(instance=student)
-    if request.method == 'POST':
-        form = StudentFormForStudent(request.POST, instance=student)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
     context = {'form': form}
     return render(request, 'accounts/details_update.html', context)
 
