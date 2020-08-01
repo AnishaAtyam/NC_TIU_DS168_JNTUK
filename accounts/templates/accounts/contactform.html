@@ -1,6 +1,7 @@
 {% extends 'accounts/main2.html' %}
 
 {% block content %}
+    <textarea class="form-control" style="margin: 10px 0px;" name="message" placeholder="Mention your Details and Issue"></textarea>
     <form action="" method="POST">
         {% csrf_token %}
         <h3 class="my-4">Contact Us</h3>
