@@ -1,13 +1,33 @@
 {% extends 'accounts/main2.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
     <div class="row">
-            {% for subjectname in subject %}
-                <div class="col-md-4"></div>
-                <div class="col-md-4 btn btn-dark my-2">{{subjectname}}</div>
-                <div class="col-md-4"></div>
-            {% endfor %}
+        {% for subjectname in subject %}
+            <div class="col-md-8">
+                <div class="card card-body">
+                    <a href="" class="btn btn-dark">{{subjectname}}</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card card-body">
+                    <a href="{% url 'update-subject' subjectname.id %}" class="btn btn-primary">Update</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card card-body">
+                    <a href="{% url 'delete-subject' subjectname.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
+
+
+
+
+
+
+
     <div class="card card-body my-4">
         <form action="" method="POST">
             {% csrf_token %}

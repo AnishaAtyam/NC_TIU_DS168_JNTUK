@@ -282,3 +282,45 @@ def subjectDetailsAndUpdate(request):
             return redirect('subject-page')
     context = {'subject': subject, 'form': form}
     return render(request, 'accounts/subject_details_update.html', context)
+
+
+def updateCourse(request, pk):
+    course = Course.objects.get(id=pk)
+    form = CourseForm(instance=course)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.save()
+            return redirect('course-page')
+    context = {'form': form}
+    return render(request, 'accounts/update_course.html', context)
+
+
+def updateSubject(request, pk):
+    subject = Subject.objects.get(id=pk)
+    form = SubjectForm(instance=subject)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=subject)
+        if form.is_valid():
+            form.save()
+            return redirect('subject-page')
+    context = {'form': form}
+    return render(request, 'accounts/update_subject.html', context)
+
+
+def deleteSubject(request, pk):
+    subject = Subject.objects.get(id=pk)
+    if request.method == 'POST':
+        subject.delete()
+        return redirect('subject-page')
+    context = {'subject': subject}
+    return render(request, 'accounts/delete_subject.html', context)
+
+
+def deleteCourse(request, pk):
+    course = Course.objects.get(id=pk)
+    if request.method == 'POST':
+        course.delete()
+        return redirect('course-page')
+    context = {'course': course}
+    return render(request, 'accounts/delete_course.html', context)

@@ -1,0 +1,12 @@
+{% extends 'accounts/main2.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Are you sure? You want to delete {{subject}}</p>
+        <div class="form-group">
+            <a class="btn btn-warning" href="{% url 'subject-page' %}">Cancel</a>
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </div>
+    </form>
+{% endblock %}

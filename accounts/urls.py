@@ -13,6 +13,10 @@ urlpatterns = [
 
     path('course_detailsnupdate', views.courseDetailsAndUpdate, name='course-page'),
     path('subject_detailsnupdate', views.subjectDetailsAndUpdate, name='subject-page'),
+    path('update_course/<str:pk>', views.updateCourse, name='update-course'),
+    path('update_subject/<str:pk>', views.updateSubject, name='update-subject'),
+    path('delete_subject/<str:pk>', views.deleteSubject, name='delete-subject'),
+    path('delete_course/<str:pk>', views.deleteCourse, name='delete-course'),
 
     path('create_class/', views.createClass, name='create-class'),
     path('create_user/', views.createUser, name='create-user'),
