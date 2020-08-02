@@ -11,6 +11,9 @@ urlpatterns = [
     path('update_student/<str:pk>', views.updateStudent, name='update_student'),
     path('delete_student/<str:pk>', views.deleteStudent, name='delete_student'),
 
+    path('course_detailsnupdate', views.courseDetailsAndUpdate, name='course-page'),
+    path('subject_detailsnupdate', views.subjectDetailsAndUpdate, name='subject-page'),
+
     path('create_class/', views.createClass, name='create-class'),
     path('create_user/', views.createUser, name='create-user'),
     path('create_student/', views.createStudent, name='create-student'),

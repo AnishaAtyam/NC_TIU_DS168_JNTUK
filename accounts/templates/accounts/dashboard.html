@@ -22,9 +22,19 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col-md-4">
             <div class="card card-body">
-                <a href="{% url 'create-class' %}" class="btn btn-warning">Create Class</a>
+                <a href="{% url 'create-class' %}" class="btn btn-warning my-4">Create New Class</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-body">
+                <a href="{% url 'course-page' %}" class="btn btn-warning my-4">Create New Course</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-body">
+                <a href="{% url 'subject-page' %}" class="btn btn-warning my-4">Create New Subject</a>
             </div>
         </div>
     </div>

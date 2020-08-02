@@ -25,3 +25,14 @@ class ClassForm(ModelForm):
         model = Class
         fields = '__all__'
 
+
+class CourseForm(ModelForm):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+
+class SubjectForm(ModelForm):
+    class Meta:
+        model = Subject
+        fields = '__all__'

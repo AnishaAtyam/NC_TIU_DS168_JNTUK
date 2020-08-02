@@ -8,7 +8,7 @@ from django.urls import reverse
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import StudentForm, ClassForm, CreateUserForm
+from .forms import StudentForm, ClassForm, CreateUserForm, CourseForm, SubjectForm
 from .filters import StudentFilter
 from .decorators import admin_only
 from django.contrib.auth.decorators import login_required
@@ -259,3 +259,26 @@ def successMsg(request, args):
     print(student.fee_paid)
     return render(request, 'accounts/success.html', {'amount': amount})
 
+
+def courseDetailsAndUpdate(request):
+    course = Course.objects.all()
+    form = CourseForm()
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('course-page')
+    context = {'course': course, 'form': form}
+    return render(request, 'accounts/course_details_update.html', context)
+
+
+def subjectDetailsAndUpdate(request):
+    subject = Subject.objects.all()
+    form = SubjectForm()
+    if request.method == 'POST':
+        form = SubjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('subject-page')
+    context = {'subject': subject, 'form': form}
+    return render(request, 'accounts/subject_details_update.html', context)
