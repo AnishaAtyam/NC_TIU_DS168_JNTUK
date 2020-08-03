@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
+import datetime
 # Create your views here.
 
 import stripe
@@ -34,11 +35,16 @@ class GeneratePdf(View):
         if student.numofsupplies>0:
             template = loader.get_template("accounts/warnsupplies.html")
             return HttpResponse(template.render())
+        if student.stuclass.finalexams is False:
+            template = loader.get_template("accounts/warnexams.html")
+            return HttpResponse(template.render())
         student.gotTc = True
         student.save()
         template = get_template('invoice.html')
+        date = datetime.date.today()
         context = {
-            "student": request.user.student
+            "student": request.user.student,
+            "date": date
         }
         html = template.render(context)
         pdf = render_to_pdf('invoice.html', context)

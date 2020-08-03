@@ -21,6 +21,7 @@ class Subject(models.Model):
 class Class(models.Model):
     name = models.CharField(max_length=50)
     academicfee = models.FloatField(default=50000)
+    finalexams = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -40,7 +41,7 @@ class Student(models.Model):
     stuclass = models.ForeignKey(Class, null=True, on_delete=models.CASCADE)
     fee_paid = models.FloatField(default=0, max_length=10, null=True)
     numofsupplies = models.IntegerField(default=0, null=True)
-    gotTc = models.BooleanField(default=0)
+    gotTc = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.user)
