@@ -31,12 +31,13 @@ class GeneratePdf(View):
         if feepaid < request.user.student.stuclass.academicfee:
             template = loader.get_template("accounts/warnpayment.html")
             return HttpResponse(template.render())
+        if student.numofsupplies>0:
+            template = loader.get_template("accounts/warnsupplies.html")
+            return HttpResponse(template.render())
+        student.gotTc = True
+        student.save()
         template = get_template('invoice.html')
         context = {
-            "invoice_id": 123,
-            "customer_name": "John Cooper",
-            "amount": 1399.99,
-            "today": "Today",
             "student": request.user.student
         }
         html = template.render(context)
@@ -123,7 +124,12 @@ def deleteStudent(request, pk):
 
 @login_required(login_url='login')
 def studentPage(request):
-    context = {}
+    student = request.user.student
+    try:
+        payments = Payment.objects.filter(student=student)
+        context = {'payments': payments}
+    except Payment.DoesNotExist:
+        context = {}
     return render(request, 'accounts/user.html', context)
 
 
@@ -178,8 +184,9 @@ def updateClass(request, pk):
     classname = Class.objects.get(id=pk)
     form = ClassForm(instance=classname)
     if request.method == 'POST':
-        form = ClassForm(request.POST)
+        form = ClassForm(request.POST, instance=classname)
         if form.is_valid():
+            form.save()
             return redirect('home')
     context = {'classname': classname, 'form': form}
     return render(request, 'accounts/update_class.html', context)
@@ -256,7 +263,7 @@ def successMsg(request, args):
     student = request.user.student
     student.fee_paid = student.fee_paid + float(args)
     student.save()
-    print(student.fee_paid)
+    Payment.objects.create(student=student, currfeepaid=float(amount))
     return render(request, 'accounts/success.html', {'amount': amount})
 
 

@@ -3,10 +3,13 @@
     <words>
       <w>academicfee</w>
       <w>coursename</w>
+      <w>currfeepaid</w>
       <w>dateofadmission</w>
       <w>detailsnupdate</w>
+      <w>endfor</w>
       <w>fathersname</w>
       <w>mothersname</w>
+      <w>numofsupplies</w>
       <w>stuclass</w>
     </words>
   </dictionary>

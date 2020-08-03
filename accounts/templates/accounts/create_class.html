@@ -2,10 +2,12 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <input type="submit" class="btn btn-info my-4" value="Create">
-    </form>
+    <div class="card card-body my-4">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" class="btn btn-info" value="Create">
+        </form>
+    </div>
 
 {% endblock %}

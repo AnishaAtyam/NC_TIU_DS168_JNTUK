@@ -18,7 +18,6 @@
             <div class="card card-body">
                 <form action="" method="get">
                     <div class="row">
-                        <div class="col-md-2"></div>
                         <div class="col-md-2">
                             {{ filter.form.name|as_crispy_field }}
                         </div>
@@ -29,9 +28,15 @@
                             {{ filter.form.phone|as_crispy_field }}
                         </div>
                         <div class="col-md-2">
+                            {{ filter.form.fee_paid|as_crispy_field }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ filter.form.gotTc|as_crispy_field }}
+                        </div>
+                        <div class="col-md-2">
                             <button class="btn btn-primary my-4 " type="submit">Search</button>
                         </div>
-                        <div class="col-md-2"></div>
+
                     </div>
               </form>
             </div>
@@ -49,7 +54,7 @@
                         <th>Roll</th>
                         <th>Fee Paid</th>
                         <th>Phone</th>
-                        <th>Email</th>
+                        <th>Got Tc</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
@@ -60,7 +65,7 @@
                             <td>{{student.roll}}</td>
                             <td>{{student.fee_paid}}</td>
                             <td>{{student.phone}}</td>
-                            <td>{{student.user.email}}</td>
+                            <td>{{student.gotTc}}</td>
                             <td><a class="btn btn-info" href="{% url 'update_student' student.id %}">Update</a></td>
                             <td><a class="btn btn-danger" href="{% url 'delete_student' student.id %}">Delete</a></td>
                         </tr>

@@ -1,7 +1,7 @@
 {% extends 'accounts/main.html' %}
 
 {% block content %}
-    <div class="row">
+    <div class="row my-4">
         <div class="col-md-2 col-lg-3"></div>
         <div class="col-md-4 col-lg-3">
             <div class="card card-body">
@@ -14,5 +14,31 @@
             </div>
         </div>
         <div class="col-md-2 col-lg-3"></div>
+    </div>
+
+    <div class="container text-center">
+        <p class="alert alert-success display-4 my-4" role="alert">Your Payment Details</p>
+    </div>
+
+
+    <div class="row justify-content-center my-4">
+        <div class="col-auto">
+            <div class="card card-body text-center">
+                    <table class="table table-sm table-responsive">
+                        <tr>
+                            <th>Fee Paid on</th>
+                            <th></th>
+                            <th>Fee Paid</th>
+                        </tr>
+                        {% for payment in payments %}
+                        <tr>
+                           <td>{{payment.date}}</td>
+                            <td></td>
+                            <td>Rs {{payment.currfeepaid}}</td>
+                        </tr>
+                    {% endfor %}
+                  </table>
+            </div>
+        </div>
     </div>
 {% endblock %}
